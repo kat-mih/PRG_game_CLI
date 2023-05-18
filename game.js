@@ -19,15 +19,41 @@ class Game {
   }
 
   async StartGame() {
+    // initialize player
     const player = new PlayerObj();
     const sprite = await chooseSprite(player);
     player.setSprite(sprite.sprite);
     player.describe();
+
+    // create game map
     console.log("--------------");
     this.generateGridObject();
     this.insert(this.playerStartX, this.playerStartY, sprite.sprite);
     this.displayGrid();
-    this.executeTurn();
+
+    // take a move
+    while (this.playerStartX !== this.width - 1 || this.playerStartY !== 0) {
+      const move = await playerMove();
+      try {
+        if (move.move === "Up") {
+          this.moveUp();
+        }
+        if (move.move === "Right") {
+          this.moveRight();
+        }
+        if (move.move === "Down") {
+          this.moveDown();
+        }
+        if (move.move === "Left") {
+          this.moveLeft();
+        }
+        this.insert(this.playerStartX, this.playerStartY, sprite.sprite);
+        this.displayGrid();
+      } catch (e) {
+        console.error(`You can't go ${move.move}`);
+      }
+    }
+    console.log("You Won!");
   }
 
   displayGrid() {
@@ -40,21 +66,7 @@ class Game {
     this.#currentObject[y][x] = object;
   }
 
-  async executeTurn() {
-    const move = await playerMove();
-    if (move.move === "Up") {
-      this.moveUp();
-    }
-    if (move.move === "Right") {
-      this.moveRight();
-    }
-    if (move.move === "Down") {
-      this.moveDown();
-    }
-    if (move.move === "Left") {
-      this.moveLeft();
-    }
-  }
+  executeTurn() {}
 
   generateGridObject() {
     // create grid
@@ -72,17 +84,35 @@ class Game {
   }
 
   moveUp() {
-    console.log("Up");
+    this.playerStartY -= 1;
+    if (this.playerStartY < 0) {
+      this.playerStartY = 0;
+      throw new Error();
+    }
   }
 
-  moveRight() {}
+  moveRight() {
+    this.playerStartX += 1;
+    if (this.playerStartX >= this.width) {
+      this.playerStartX = this.width - 1;
+      throw new Error();
+    }
+  }
 
   moveDown() {
-    console.log("Down");
+    this.playerStartY += 1;
+    if (this.playerStartY >= this.height) {
+      this.playerStartY = this.height - 1;
+      throw new Error();
+    }
   }
 
   moveLeft() {
-    console.log("Left");
+    this.playerStartX -= 1;
+    if (this.playerStartX < 0) {
+      this.playerStartX = 0;
+      throw new Error();
+    }
   }
 }
 
