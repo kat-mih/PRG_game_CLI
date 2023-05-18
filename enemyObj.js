@@ -21,9 +21,9 @@ class EnemyObj extends GridObj {
 
   describe() {
     console.log(
-      `🕷️ ${this.getName()}: HP - ${this.#static.HP}; Attack - ${
-        this.#static.Attack
-      }; Defense = ${this.#static.Defense}`
+      `🕷️ ${this.getName()}: HP - ${this.#stats.HP}; Attack - ${
+        this.#stats.Attack
+      }; Defense = ${this.#stats.Defense}`
     );
   }
 }

@@ -1,6 +1,7 @@
 import { PlayerObj } from "./playerObj.js";
 import { GridObj } from "./gridObj.js";
 import { ItemObj } from "./itemObj.js";
+import { EnemyObj } from "./enemyObj.js";
 import { chooseSprite, playerMove } from "./playerPromt.js";
 
 class Game {
@@ -34,23 +35,25 @@ class Game {
     // take a move
     while (this.playerStartX !== this.width - 1 || this.playerStartY !== 0) {
       const move = await playerMove();
+      // add paws
+      this.insert(this.playerStartX, this.playerStartY, player.getStat().paws);
       try {
-        if (move.move === "Up") {
+        if (move === "Up") {
           this.moveUp();
         }
-        if (move.move === "Right") {
+        if (move === "Right") {
           this.moveRight();
         }
-        if (move.move === "Down") {
+        if (move === "Down") {
           this.moveDown();
         }
-        if (move.move === "Left") {
+        if (move === "Left") {
           this.moveLeft();
         }
         this.insert(this.playerStartX, this.playerStartY, sprite.sprite);
         this.displayGrid();
       } catch (e) {
-        console.error(`You can't go ${move.move}`);
+        console.error(`You can't go ${move}`);
       }
     }
     console.log("You Won!");

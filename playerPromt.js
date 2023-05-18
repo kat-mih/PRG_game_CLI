@@ -10,12 +10,14 @@ const chooseSprite = async (player) => {
 };
 
 const playerMove = async () => {
-  return await inquirer.prompt({
+  const result = await inquirer.prompt({
     type: "list",
     name: "move",
     message: "Which direction would you like to travel?",
     choices: ["Up", "Right", "Down", "Left"],
   });
+
+  return result.move;
 };
 
 export { chooseSprite, playerMove };
