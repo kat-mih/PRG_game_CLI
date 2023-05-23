@@ -2,28 +2,36 @@ import { GridObj } from "./gridObj.js";
 
 class EnemyObj extends GridObj {
   #stats = {
-    HP: 6,
-    Attack: 3,
-    Defense: 1,
+    name: null,
+    hp: 0,
+    attack: 0,
+    defense: 0,
   };
 
   constructor(sprite, stats) {
     super(sprite);
+    this.#stats = stats;
+    this.type = "enemy";
   }
 
   getName() {
-    return "Spider";
+    return this.#stats.name;
   }
 
   getStat() {
-    return this.#stats;
+    return {
+      attack: this.#stats.attack,
+      defense: this.#stats.defense,
+      hp: this.#stats.hp,
+    };
   }
 
   describe() {
     console.log(
-      `🕷️ ${this.getName()}: HP - ${this.#stats.HP}; Attack - ${
-        this.#stats.Attack
-      }; Defense = ${this.#stats.Defense}`
+      `🕷️ You encountered a ${this.getName()}
+${this.getName()} Stats: HP - ${this.#stats.hp}; Attack - ${
+        this.#stats.attack
+      }; Defense = ${this.#stats.defense}`
     );
   }
 }

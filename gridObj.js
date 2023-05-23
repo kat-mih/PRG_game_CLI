@@ -2,15 +2,26 @@ class GridObj {
   #backgroundSprites = ["🌴", "🌲", "🌵", "🌳"];
 
   constructor(sprite, type = "undiscovered") {
-    this.sprite =
-      this.#backgroundSprites[
-        Math.floor(Math.random() * (this.#backgroundSprites.length - 1))
-      ];
+    if (!sprite) {
+      this.sprite =
+        this.#backgroundSprites[
+          Math.floor(Math.random() * this.#backgroundSprites.length)
+        ];
+    } else {
+      this.sprite = sprite;
+    }
     this.type = type;
   }
 
-  decription() {
-    console.log(`${type}`);
+  describe() {
+    const random = Math.random();
+    if (random < 0.33) {
+      console.log("Coast is clear!");
+    } else if (random < 0.66) {
+      console.log("This surroundings look familiar.");
+    } else {
+      console.log("There's not much here.");
+    }
   }
 }
 

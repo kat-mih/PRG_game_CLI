@@ -2,28 +2,36 @@ import { GridObj } from "./gridObj.js";
 
 class ItemObj extends GridObj {
   #stats = {
-    HP: 0,
-    Attack: 3,
-    Defense: 1,
+    name: null,
+    hp: 0,
+    attack: 0,
+    defense: 0,
   };
 
   constructor(sprite, stats) {
     super(sprite);
+    this.type = "item";
+    this.#stats = stats;
   }
 
   itemName() {
-    return "Sword";
+    return this.#stats.name;
   }
 
-  getStats() {
-    return this.#stats;
+  getStat() {
+    return {
+      attack: this.#stats.attack,
+      defense: this.#stats.defense,
+      hp: this.#stats.hp,
+    };
   }
 
   describe() {
     console.log(
-      `🗡️ You got ${this.itemName()}: HP - ${this.#stats.HP}; Attack - ${
-        this.#stats.Attack
-      }; Defense - ${this.#stats.Defense}`
+      `🗡️ You found a ${this.itemName()}!
+${this.itemName()}'s Stats: HP - ${this.#stats.hp}; Attack - ${
+        this.#stats.attack
+      }; Defense - ${this.#stats.defense}`
     );
   }
 }

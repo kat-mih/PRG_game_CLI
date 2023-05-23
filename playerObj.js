@@ -1,35 +1,49 @@
 class PlayerObj {
   #stats = {
-    HP: 20,
-    Attack: 10,
-    Defense: 5,
-    sprite: ["🐰", "🦊", "🐵", "🐨", "🐼"],
-    paws: "🐾",
+    hp: 0,
+    attack: 0,
+    defense: 0,
   };
 
-  chooseSprite() {
-    return this.#stats.sprite;
+  constructor(name, stats) {
+    this.name = name;
+    this.stats = stats;
+    this.sprite = ["🐰", "🦊", "🐵", "🐨", "🐼"];
   }
 
   setSprite(userInput) {
-    this.#stats.sprite = userInput;
+    this.sprite = userInput;
+  }
+
+  getName() {
+    return this.name;
   }
 
   getStat() {
-    return this.#stats;
+    return {
+      attack: this.#stats.attack,
+      defense: this.#stats.defense,
+      hp: this.#stats.hp,
+    };
   }
 
   addToStats(statsObj) {
-    for (const key in this.#stats) {
-      this.#stats[key] += statsObj[key];
+    if (statsObj.attack) {
+      this.#stats.attack += statsObj.attack;
+    }
+    if (statsObj.defense) {
+      this.#stats.defense += statsObj.defense;
+    }
+    if (statsObj.hp) {
+      this.#stats.hp += statsObj.hp;
     }
   }
 
   describe() {
     console.log(
-      `${this.#stats.sprite} Player: HP - ${this.#stats.HP}; Attack - ${
-        this.#stats.Attack
-      }; Defense - ${this.#stats.Defense}`
+      `${this.sprite} Player Stats: HP - ${this.#stats.hp}; Attack - ${
+        this.#stats.attack
+      }; Defense - ${this.#stats.defense}`
     );
   }
 }
