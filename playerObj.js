@@ -9,7 +9,6 @@ class PlayerObj {
     this.name = name;
     this.#stats = stats;
     this.sprite = ["🐰", "🦊", "🐵", "🐨", "🐼"];
-    // this.sprite = "🐰";
   }
 
   setSprite(userInput) {
