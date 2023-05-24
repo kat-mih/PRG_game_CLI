@@ -18,7 +18,7 @@ class EnemyObj extends GridObj {
     return this.#stats.name;
   }
 
-  getStat() {
+  getStats() {
     return {
       attack: this.#stats.attack,
       defense: this.#stats.defense,
@@ -28,10 +28,10 @@ class EnemyObj extends GridObj {
 
   describe() {
     console.log(
-      `🕷️ You encountered a ${this.getName()}
+      `${this.sprite} You encountered a ${this.getName()}
 ${this.getName()} Stats: HP - ${this.#stats.hp}; Attack - ${
         this.#stats.attack
-      }; Defense = ${this.#stats.defense}`
+      }; Defense - ${this.#stats.defense}`
     );
   }
 }

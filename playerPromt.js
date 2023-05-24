@@ -5,19 +5,19 @@ const chooseSprite = async (player) => {
     type: "list",
     name: "sprite",
     message: "Please select your sprite:",
-    choices: [...player.chooseSprite()],
+    choices: [...player],
   });
 };
 
 const playerMove = async () => {
   const result = await inquirer.prompt({
     type: "list",
-    name: "move",
+    name: "direction",
     message: "Which direction would you like to travel?",
     choices: ["Up", "Right", "Down", "Left"],
   });
 
-  return result.move;
+  return result.direction;
 };
 
 export { chooseSprite, playerMove };

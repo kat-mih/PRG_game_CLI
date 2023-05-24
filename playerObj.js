@@ -7,8 +7,9 @@ class PlayerObj {
 
   constructor(name, stats) {
     this.name = name;
-    this.stats = stats;
+    this.#stats = stats;
     this.sprite = ["🐰", "🦊", "🐵", "🐨", "🐼"];
+    // this.sprite = "🐰";
   }
 
   setSprite(userInput) {
@@ -19,7 +20,7 @@ class PlayerObj {
     return this.name;
   }
 
-  getStat() {
+  getStats() {
     return {
       attack: this.#stats.attack,
       defense: this.#stats.defense,

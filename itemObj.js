@@ -18,7 +18,7 @@ class ItemObj extends GridObj {
     return this.#stats.name;
   }
 
-  getStat() {
+  getStats() {
     return {
       attack: this.#stats.attack,
       defense: this.#stats.defense,
@@ -28,7 +28,7 @@ class ItemObj extends GridObj {
 
   describe() {
     console.log(
-      `🗡️ You found a ${this.itemName()}!
+      `${this.sprite} You found a ${this.itemName()}!
 ${this.itemName()}'s Stats: HP - ${this.#stats.hp}; Attack - ${
         this.#stats.attack
       }; Defense - ${this.#stats.defense}`
