@@ -16,4 +16,4 @@
 
 :warning: TBD :warning:
 
-![]()
+![](rpg_game.gif)
